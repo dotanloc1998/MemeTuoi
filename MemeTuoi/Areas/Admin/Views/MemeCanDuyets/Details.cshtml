@@ -1,0 +1,67 @@
+﻿@model MemeTuoi.Data.MemeCanDuyet
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MemeName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MemeName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MemeImgUrl)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MemeImgUrl)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MemeCategory)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MemeCategory)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MemeUpvotes)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MemeUpvotes)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Uploader)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Uploader)
+        </dd>
+        <dt>
+            Hình ảnh chi tiết
+        </dt>
+        <dd>
+            @if (@Model.MemeImgUrl.Substring(@Model.MemeImgUrl.Length - 4) == ".mp4" || @Model.MemeImgUrl.Substring(@Model.MemeImgUrl.Length - 5) == ".webm")
+            {
+                <video style="width: 500px" controls>
+                    <source src="@Model.MemeImgUrl" type="video/mp4">
+                </video>
+            }
+            else if (@Model.MemeImgUrl.Substring(12, 7) == "youtube")
+            {
+                <iframe style="width: 700px" allowfullscreen="allowfullscreen" height="500" src="@Model.MemeImgUrl"></iframe>
+            }
+            else
+            {
+                <img style="width: 700px" class="img-fluid card-img-top" src="@Model.MemeImgUrl">
+            }
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.MemeCanDuyetID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -1,0 +1,147 @@
+﻿@model MemeTuoi.Data.PaginatedList<MemeTuoi.Models.Meme>
+<head>
+    <link href="~/sidebar/simple-sidebar.css" rel="stylesheet">
+</head>
+<body>
+
+    <div data-aos="fade">
+        <div class="container-fluid">
+
+            <div class="row justify-content-center">
+
+                <div class="col-md-7">
+                    <div class="row mb-5">
+                        <div class="col-12 ">
+                            <h2 class="site-section-heading text-center">@ViewBag.TiTle Gallery</h2>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-xl-3 d-none d-xl-block">
+                    <!-- Sidebar -->
+                    <div class="bg-light border-right " id="sidebar-wrapper">
+                        <div class="sidebar-heading">Menu</div>
+                        <div class="list-group list-group-flush">
+                            @foreach (var item in @ViewBag.DanhSachTheLoai)
+                            {
+                                <a asp-area="" asp-controller="Meme" asp-action="Index" asp-route-id="@item.TheLoaiId" class="list-group-item list-group-item-action bg-light">@item.TenTheLoai</a>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12">
+                    @foreach (var item in Model)
+                    {
+                        if (item.MemeImgUrl.Substring(item.MemeImgUrl.Length - 4) == ".mp4")
+                        {
+                            <div class="card" style="width: 100%;">
+                                <video controls>
+                                    <source src="@item.MemeImgUrl" type="video/mp4">
+                                </video>
+                                <div class="card-body">
+                                    <h5 class="card-title">@item.MemeName</h5>
+                                    <p class="card-text">Số lượt thích: @item.MemeUpvotes</p>
+                                    <a class="btn btn-primary" asp-controller="Meme" asp-action="UpVote" asp-route-id="@item.MemeID">Upvote</a>
+                                    <a class="btn btn-primary" asp-controller="Meme" asp-action="DownVote" asp-route-id="@item.MemeID">DownVote</a>
+                                    <a class="btn btn-primary" asp-controller="Meme" asp-action="MemeDetail" asp-route-id="@item.MemeID">Comment</a>
+                                    
+                                </div>
+                            </div>
+                            <hr class="my-5">
+                        }
+                        else if (item.MemeImgUrl.Substring(item.MemeImgUrl.Length - 5) == ".webm")
+                        {
+                            <div class="card" style="width: 100%;">
+                                <video controls>
+                                    <source src="@item.MemeImgUrl" type="video/mp4">
+                                </video>
+                                <div class="card-body">
+                                    <h5 class="card-title">@item.MemeName</h5>
+                                    <p class="card-text">Số lượt thích: @item.MemeUpvotes</p>
+                                    <a class="btn btn-primary" asp-controller="Meme" asp-action="UpVote" asp-route-id="@item.MemeID">Upvote</a>
+                                    <a class="btn btn-primary" asp-controller="Meme" asp-action="DownVote" asp-route-id="@item.MemeID">DownVote</a>
+                                    <a class="btn btn-primary" asp-controller="Meme" asp-action="MemeDetail" asp-route-id="@item.MemeID">Comment</a>
+                                    
+                                </div>
+                            </div>
+                            <hr class="my-5">
+                        }
+                        else if (item.MemeImgUrl.Substring(12, 7) == "youtube")
+                        {
+                            <div class="card" style="width: 100%;">
+                                <iframe allowfullscreen="allowfullscreen" height="500" src="@item.MemeImgUrl"></iframe>
+                                <div class="card-body">
+                                    <h5 class="card-title">@item.MemeName</h5>
+                                    <p class="card-text">Số lượt thích: @item.MemeUpvotes</p>
+                                    <a class="btn btn-primary" asp-controller="Meme" asp-action="UpVote" asp-route-id="@item.MemeID">Upvote</a>
+                                    <a class="btn btn-primary" asp-controller="Meme" asp-action="DownVote" asp-route-id="@item.MemeID">DownVote</a>
+                                    <a class="btn btn-primary" asp-controller="Meme" asp-action="MemeDetail" asp-route-id="@item.MemeID">Comment</a>
+                                    
+                                </div>
+                            </div>
+                            <hr class="my-5">
+                        }
+                        else
+                        {
+                            <div class="card" style="width: 100%;">
+                                <img class="img-fluid card-img-top" src="@item.MemeImgUrl">
+                                <div class="card-body">
+                                    <h5 class="card-title">@item.MemeName</h5>
+                                    <p class="card-text">Số lượt thích: @item.MemeUpvotes</p>
+                                    <a class="btn btn-primary" asp-controller="Meme" asp-action="UpVote" asp-route-id="@item.MemeID">Upvote</a>
+                                    <a class="btn btn-primary" asp-controller="Meme" asp-action="DownVote" asp-route-id="@item.MemeID">DownVote</a>
+                                    <a class="btn btn-primary" asp-controller="Meme" asp-action="MemeDetail" asp-route-id="@item.MemeID">Comment</a>
+                                   
+                                </div>
+                            </div>
+                            <hr class="my-5">
+                        }
+                    }
+                    @{
+                        var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+                        var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+                    }
+
+                    <a asp-action="Index"
+                       asp-route-sortOrder="@ViewData["CurrentSort"]"
+                       asp-route-pageNumber="@(Model.PageIndex - 1)"
+                       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                       class="btn btn-default @prevDisabled">
+                        Previous
+                    </a>
+                    <a asp-action="Index"
+                       asp-route-sortOrder="@ViewData["CurrentSort"]"
+                       asp-route-pageNumber="@(Model.PageIndex + 1)"
+                       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                       class="btn btn-default @nextDisabled">
+                        Next
+                    </a>
+                </div>
+
+                <div class="col-xl-3 d-none d-xl-block">
+                    <form asp-action="Index" method="get">
+                        <div class="form-actions no-color">
+                            <p>
+                                Find by name: <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
+                                <input type="submit" value="Search" class="btn btn-default" /> |
+                                <a asp-action="Index">Quay lại Meme</a>
+                            </p>
+                        </div>
+                    </form>
+                    <form asp-action="Create" method="get">
+                        <div class="form-group">
+                            <input type="submit" value="Đăng Meme" class="btn btn-default" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</body>

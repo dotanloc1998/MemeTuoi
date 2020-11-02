@@ -1,0 +1,110 @@
+﻿@model Meme
+<head>
+    <link href="~/sidebar/simple-sidebar.css" rel="stylesheet">
+</head>
+<body>
+    
+
+    <div data-aos="fade">
+        <div class="container-fluid">
+
+            <div class="row justify-content-center">
+
+                <div class="col-md-7">
+                    <div class="row mb-5">
+                        <div class="col-12 ">
+                            <h2 class="site-section-heading text-center">@ViewBag.TiTle Gallery</h2>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-xl-3 d-none d-xl-block">
+                    <!-- Sidebar -->
+                    <div class="bg-light border-right " id="sidebar-wrapper">
+                        <div class="sidebar-heading">Menu</div>
+                        <div class="list-group list-group-flush">
+                            @foreach (var item in @ViewBag.DanhSachTheLoai)
+                            {
+                                <a asp-area="" asp-controller="Meme" asp-action="Index" asp-route-id="@item.TheLoaiId" class="list-group-item list-group-item-action bg-light">@item.TenTheLoai</a>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12">
+                    @if (@Model.MemeImgUrl.Substring(@Model.MemeImgUrl.Length - 4) == ".mp4")
+                    {
+                        <div class="card" style="width: 100%;">
+                            <div class="card-body">
+                                <h5 class="card-title">@Model.MemeName</h5>
+                                <p class="card-text">Số lượt thích: @Model.MemeUpvotes</p>
+                                <a class="btn btn-primary" asp-controller="Meme" asp-action="UpVoteDetail" asp-route-id="@Model.MemeID">Upvote</a>
+                                <a class="btn btn-primary" asp-controller="Meme" asp-action="DownVoteDetail" asp-route-id="@Model.MemeID">DownVote</a>
+                               
+                            </div>
+                            <video controls>
+                                <source src="@Model.MemeImgUrl" type="video/mp4">
+                            </video>
+                        </div>
+                        <hr class="my-5">
+                    }
+                    else if (@Model.MemeImgUrl.Substring(@Model.MemeImgUrl.Length - 5) == ".webm")
+                    {
+                        <div class="card" style="width: 100%;">
+                            <div class="card-body">
+                                <h5 class="card-title">@Model.MemeName</h5>
+                                <p class="card-text">Số lượt thích: @Model.MemeUpvotes</p>
+                                <a class="btn btn-primary" asp-controller="Meme" asp-action="UpVoteDetail" asp-route-id="@Model.MemeID">Upvote</a>
+                                <a class="btn btn-primary" asp-controller="Meme" asp-action="DownVoteDetail" asp-route-id="@Model.MemeID">DownVote</a>
+                                
+                            </div>
+                            <video controls>
+                                <source src="@Model.MemeImgUrl" type="video/mp4">
+                            </video>
+
+                        </div>
+                        <hr class="my-5">
+                    }
+                    else if (@Model.MemeImgUrl.Substring(12, 7) == "youtube")
+                    {
+                        <div class="card" style="width: 100%;">
+                            <div class="card-body">
+                                <h5 class="card-title">@Model.MemeName</h5>
+                                <p class="card-text">Số lượt thích: @Model.MemeUpvotes</p>
+                                <a class="btn btn-primary" asp-controller="Meme" asp-action="UpVoteDetail" asp-route-id="@Model.MemeID">Upvote</a>
+                                <a class="btn btn-primary" asp-controller="Meme" asp-action="DownVoteDetail" asp-route-id="@Model.MemeID">DownVote</a>
+                               
+                            </div>
+                            <iframe allowfullscreen="allowfullscreen" height="500" src="@Model.MemeImgUrl"></iframe>
+                        </div>
+                        <hr class="my-5">
+                    }
+                    else
+                    {
+                        <div class="card" style="width: 100%;">
+                            <div class="card-body">
+                                <h5 class="card-title">@Model.MemeName</h5>
+                                <p class="card-text">Số lượt thích: @Model.MemeUpvotes</p>
+                                <a class="btn btn-primary" asp-controller="Meme" asp-action="UpVoteDetail" asp-route-id="@Model.MemeID">Upvote</a>
+                                <a class="btn btn-primary" asp-controller="Meme" asp-action="DownVoteDetail" asp-route-id="@Model.MemeID">DownVote</a>
+                               
+                            </div>
+                            <img class="img-fluid card-img-top" src="@Model.MemeImgUrl">
+                        </div>
+                        <hr class="my-5">
+                    }
+                        <div class="fb-comments" data-href="https://localhost:44393/Meme/MemeDetail/@Model.MemeID" data-width="auto" data-numposts="10"></div>
+                </div>
+
+                <div class="col-xl-3 d-none d-xl-block">
+                    <div class="fb-page" data-href="https://www.facebook.com/memekhongheo/" data-tabs="timeline" data-width="" data-height="" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/memekhongheo/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/memekhongheo/">Meme Tươi</a></blockquote></div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</body>

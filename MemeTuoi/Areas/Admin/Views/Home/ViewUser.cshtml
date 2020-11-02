@@ -1,0 +1,61 @@
+﻿@model MemeTuoi.Data.PaginatedList<MemeTuoi.Data.AppUser>
+@{
+    ViewData["Title"] = "ViewMeme";
+}
+
+<div class="container">
+    <h1>Giao diện Quản lí User</h1>
+    <div class="row tile_count">
+        <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+            <span class="count_top"><i class="fa fa-user"></i> Total User</span>
+            <div class="count">@ViewBag.TotalUser</div>
+        </div>
+    </div>
+    <form asp-action="ViewUser" method="get">
+        <div class="form-actions no-color">
+            <p>
+                Find by name: <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
+                <input type="submit" value="Search" class="btn btn-default" /> |
+                <a asp-action="ViewUser">Back to Full List</a>
+            </p>
+        </div>
+    </form>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>User Id</th>
+            <th>User Name</th>
+            <th>Phone Number</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in @Model)
+        {
+            <tr>
+                <th>@item.Id</th>
+                <td>@item.Email</td>
+                <td>@item.PhoneNumber</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+    @{
+        var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+        var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+    }
+
+    <a asp-action="Index"
+       asp-route-sortOrder="@ViewData["CurrentSort"]"
+       asp-route-pageNumber="@(Model.PageIndex - 1)"
+       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       class="btn btn-default @prevDisabled">
+        Previous
+    </a>
+    <a asp-action="Index"
+       asp-route-sortOrder="@ViewData["CurrentSort"]"
+       asp-route-pageNumber="@(Model.PageIndex + 1)"
+       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       class="btn btn-default @nextDisabled">
+        Next
+    </a>
+</div>

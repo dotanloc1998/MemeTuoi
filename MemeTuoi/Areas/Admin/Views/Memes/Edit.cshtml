@@ -1,0 +1,52 @@
+﻿@model MemeTuoi.Models.Meme
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>Meme</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="MemeID" />
+            <div class="form-group">
+                <label asp-for="MemeName" class="control-label"></label>
+                <input asp-for="MemeName" class="form-control" />
+                <span asp-validation-for="MemeName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MemeImgUrl" class="control-label"></label>
+                <input asp-for="MemeImgUrl" class="form-control" />
+                <span asp-validation-for="MemeImgUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MemeCategory" class="control-label"></label>
+                <select class="form-control" asp-for="MemeCategory">
+                    @foreach (var f in @ViewBag.DanhSachTheLoai)
+                    {
+                        <option value="@f.TheLoaiId">@f.TenTheLoai</option>
+                    }
+                </select>
+                <span asp-validation-for="MemeCategory" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MemeUpvotes" class="control-label"></label>
+                <input asp-for="MemeUpvotes" class="form-control" />
+                <span asp-validation-for="MemeUpvotes" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

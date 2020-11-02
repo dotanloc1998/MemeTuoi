@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Meme>
+@{
+    ViewData["Title"] = "ViewMeme";
+}
+
+<div class="container">
+    <h2>Số lượng Meme: @Model.Count()</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Meme Name</th>
+                <th>Meme Url</th>
+                <th>Meme Category</th>
+                <th>Meme Upvotes</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in @Model)
+            {
+                <tr>
+                    <td>@item.MemeID</td>
+                    <td>@item.MemeName</td>
+                    <td>@item.MemeImgUrl</td>
+                    <td>@item.MemeCategory</td>
+                    <td>@item.MemeUpvotes</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

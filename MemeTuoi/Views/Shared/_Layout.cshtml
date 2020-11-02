@@ -1,0 +1,182 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewData["Title"] Meme Tươi</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300i,400,700" rel="stylesheet">
+    <link rel="stylesheet" href="~/memetuoi/fonts/icomoon/style.css">
+
+    <link rel="stylesheet" href="~/memetuoi/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/memetuoi/css/magnific-popup.css">
+    <link rel="stylesheet" href="~/memetuoi/css/jquery-ui.css">
+    <link rel="stylesheet" href="~/memetuoi/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/memetuoi/css/owl.theme.default.min.css">
+
+    <link rel="stylesheet" href="~/memetuoi/css/lightgallery.min.css">
+
+    <link rel="stylesheet" href="~/memetuoi/css/bootstrap-datepicker.css">
+
+    <link rel="stylesheet" href="~/memetuoi/fonts/flaticon/font/flaticon.css">
+
+    <link rel="stylesheet" href="~/memetuoi/css/swiper.css">
+
+    <link rel="stylesheet" href="~/memetuoi/css/aos.css">
+
+    <link rel="stylesheet" href="~/memetuoi/css/style.css">
+
+
+</head>
+
+<body>
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v3.3"></script>
+    <div class="site-wrap">
+
+        <style>
+            #myBtn {
+                display: none;
+                position: fixed;
+                bottom: 20px;
+                right: 180px;
+                z-index: 99;
+                font-size: 18px;
+                border: none;
+                outline: none;
+                background-color: black;
+                color: white;
+                cursor: pointer;
+                padding: 15px;
+                border-radius: 4px;
+            }
+
+                #myBtn:hover {
+                    background-color: #555;
+                }
+        </style>
+        <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+        <script>
+            // When the user scrolls down 20px from the top of the document, show the button
+            window.onscroll = function () { scrollFunction() };
+
+            function scrollFunction() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    document.getElementById("myBtn").style.display = "block";
+                } else {
+                    document.getElementById("myBtn").style.display = "none";
+                }
+            }
+
+            // When the user clicks on the button, scroll to the top of the document
+            function topFunction() {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            }
+        </script>
+
+        <div class="site-mobile-menu">
+            <div class="site-mobile-menu-header">
+                <div class="site-mobile-menu-close mt-3">
+                    <span class="icon-close2 js-menu-toggle"></span>
+                </div>
+            </div>
+            <div class="site-mobile-menu-body"></div>
+        </div>
+
+        <header class="site-navbar py-3 " role="banner">
+
+            <div class="container-fluid">
+                <div class="row align-items-center">
+
+                    <div class="col-6 col-xl-2" data-aos="fade-down">
+                        <h1 class="mb-0"><a asp-area="" asp-controller="Home" asp-action="Index" class="text-black h2 mb-0">Meme Tươi</a></h1>
+                    </div>
+
+                    <div class="col-10 col-md-8 d-none d-xl-block" data-aos="fade-down">
+                        <nav class="site-navigation position-relative text-right text-lg-center" role="navigation">
+
+                            <ul class="site-menu js-clone-nav mx-auto d-none d-lg-block">
+                                <li class="active"><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                                <li class="has-children">
+                                    <a asp-area="" asp-controller="" asp-action="">Gallery</a>
+                                    <ul class="dropdown">
+                                        <li><a asp-area="" asp-controller="Meme" asp-action="Index" asp-route-id="1">Funny</a></li>
+                                        <li><a asp-area="" asp-controller="Meme" asp-action="Index" asp-route-id="2">Animals</a></li>
+                                        <li><a asp-area="" asp-controller="Meme" asp-action="Index" asp-route-id="3">Anime & Manga</a></li>
+                                        <li><a asp-area="" asp-controller="Meme" asp-action="Index" asp-route-id="4">Kamen Rider</a></li>
+                                        <li><a asp-area="" asp-controller="Meme" asp-action="Index" asp-route-id="5">Girls</a></li>
+                                        <li><a asp-area="" asp-controller="Meme" asp-action="Index" asp-route-id="6">NSFW</a></li>
+                                        <li><a asp-area="" asp-controller="Meme" asp-action="Index" asp-route-id="7">Fortnite</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="https://www.instagram.com/grumpycat556/">Services</a></li>
+                                <li><a href="https://www.google.com/">About</a></li>
+                                <li><a href="https://www.facebook.com/profile.php?id=100001496419243">Contact</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                    <div class="col-6 col-xl-2 text-right" data-aos="fade-down">
+                        <div class="d-none d-xl-inline-block">
+                            <ul class="site-menu js-clone-nav ml-auto list-unstyled d-flex text-right mb-0" data-class="social">
+                                <li>
+                                    <partial name="_LoginPartial" />
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-black"><span class="icon-menu h3"></span></a></div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </header>
+
+        @RenderBody()
+
+        <div class="footer py-4">
+            <div class="container-fluid">
+                <p>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    Copyright &copy;
+                    <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Start of  Zendesk Widget script -->
+    <script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=1d40faf3-b5d5-48c5-9307-1632387dfd6c"></script>
+    <!-- End of  Zendesk Widget script -->
+    <script src="~/memetuoi/js/jquery-3.3.1.min.js"></script>
+    <script src="~/memetuoi/js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="~/memetuoi/js/jquery-ui.js"></script>
+    <script src="~/memetuoi/js/popper.min.js"></script>
+    <script src="~/memetuoi/js/bootstrap.min.js"></script>
+    <script src="~/memetuoi/js/owl.carousel.min.js"></script>
+    <script src="~/memetuoi/js/jquery.stellar.min.js"></script>
+    <script src="~/memetuoi/js/jquery.countdown.min.js"></script>
+    <script src="~/memetuoi/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/memetuoi/js/bootstrap-datepicker.min.js"></script>
+    <script src="~/memetuoi/js/swiper.min.js"></script>
+    <script src="~/memetuoi/js/aos.js"></script>
+
+    <script src="~/memetuoi/js/picturefill.min.js"></script>
+    <script src="~/memetuoi/js/lightgallery-all.min.js"></script>
+    <script src="~/memetuoi/js/jquery.mousewheel.min.js"></script>
+
+    <script src="~/memetuoi/js/main.js"></script>
+
+
+    <script>
+        $(document).ready(function () {
+            $('#lightgallery').lightGallery();
+        });
+    </script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

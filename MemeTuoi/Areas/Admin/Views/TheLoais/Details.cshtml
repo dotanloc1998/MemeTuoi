@@ -1,0 +1,31 @@
+﻿@model MemeTuoi.Data.TheLoai
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TheLoai</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TenTheLoai)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TenTheLoai)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AnhTheLoai)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AnhTheLoai)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.TheLoaiId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

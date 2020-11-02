@@ -1,0 +1,24 @@
+﻿@model IEnumerable<MemeTuoi.Data.TheLoai>
+<div class="container-fluid" data-aos="fade" data-aos-delay="500">
+    <div class="swiper-container ~/memetuoi/images-carousel">
+        <div class="swiper-wrapper">
+            @foreach (var item in Model)
+            {
+                <div class="swiper-slide">
+                    <div class="image-wrap">
+                        <div class="image-info">
+                            <h2 class="mb-3">@item.TenTheLoai</h2>
+                            <a asp-area="" asp-controller="Meme" asp-action="Index" asp-route-id="@item.TheLoaiId" class="btn btn-outline-white py-2 px-4">Xem thêm</a>
+                        </div>
+                        <img src="@item.AnhTheLoai" alt="Image">
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-scrollbar"></div>
+    </div>
+</div>
